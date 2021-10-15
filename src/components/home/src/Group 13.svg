@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <g id="Group_13" data-name="Group 13" transform="translate(-20 -164)">
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(20 164)" fill="none" stroke="#fff" stroke-width="1.5">
+      <circle cx="22.5" cy="22.5" r="22.5" stroke="none"/>
+      <circle cx="22.5" cy="22.5" r="21.75" fill="none"/>
+    </g>
+    <g id="Icon_feather-youtube" data-name="Icon feather-youtube" transform="translate(26.77 170.5)">
+      <path id="Path_7" data-name="Path 7" d="M29.365,9.131a3.6,3.6,0,0,0-2.51-2.587C24.631,6,15.73,6,15.73,6S6.83,6,4.6,6.6a3.6,3.6,0,0,0-2.51,2.587,37.517,37.517,0,0,0-.6,6.843,37.516,37.516,0,0,0,.6,6.9A3.6,3.6,0,0,0,4.6,25.4C6.83,26,15.73,26,15.73,26s8.9,0,11.125-.6a3.6,3.6,0,0,0,2.51-2.587,37.516,37.516,0,0,0,.6-6.792,37.516,37.516,0,0,0-.6-6.9Z" transform="translate(0 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="Path_8" data-name="Path 8" d="M14.625,22.53l8.625-4.905-8.625-4.9Z" transform="translate(-2.444 -1.602)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <g id="Group_11" data-name="Group 11" transform="translate(-20 -164)">
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(20 164)" fill="none" stroke="#fff" stroke-width="1.5">
+      <circle cx="22.5" cy="22.5" r="22.5" stroke="none"/>
+      <circle cx="22.5" cy="22.5" r="21.75" fill="none"/>
+    </g>
+    <path id="Icon_feather-twitter" data-name="Icon feather-twitter" d="M26.021,4.5a12.149,12.149,0,0,1-3.5,1.705A4.993,4.993,0,0,0,13.76,9.545V10.66A11.881,11.881,0,0,1,3.729,5.611S-.729,15.642,9.3,20.1a12.974,12.974,0,0,1-7.8,2.229c10.031,5.573,22.292,0,22.292-12.818a5.016,5.016,0,0,0-.089-.925A8.6,8.6,0,0,0,26.021,4.5Z" transform="translate(28.739 172.015)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
