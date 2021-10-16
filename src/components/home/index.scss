@@ -5,10 +5,18 @@
     min-width: 100vw;
     min-height: 100vh;
     padding: 3.125em;
-    user-select: none;
-    pointer-events: none;
+    padding-left: 10vw;
+    padding-right: 10vw;
     touch-action: none;
     display: inline-block;
+    position: fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    pointer-events: none;
+    .row{
+        pointer-events: none;
+    }
 
     // background-color: $black;
     .icons {
@@ -18,7 +26,7 @@
         display: grid;
         place-items: center;
         align-content: space-between;
-        pointer-events: none;
+
         touch-action: none;
 
         svg {
@@ -30,7 +38,7 @@
                 @include transition;
             }
 
-            pointer-events: none;
+    
             touch-action: none;
 
             &:hover {
@@ -45,21 +53,21 @@
         .media-icons {
             min-height: 50vh;
             display: grid;
-            pointer-events: none;
+    
             touch-action: none;
         }
     }
 
     .body {
         max-width: calc(100vw - 115px);
-        pointer-events: none;
+
         touch-action: none;
 
         .demo-reel {
             width: 100%;
             display: grid;
             place-items: center;
-            pointer-events: none;
+    
             touch-action: none;
 
             .demo-reel-text {
@@ -71,7 +79,7 @@
                 line-height: 1;
                 margin-left: 20px;
                 align-self: center;
-                pointer-events: none;
+        
                 touch-action: none;
             }
         }
@@ -80,7 +88,7 @@
             min-height: calc(100vh - 7.500em);
             display: grid;
             align-content: space-between;
-            pointer-events: none;
+    
             touch-action: none;
 
             .welcom-text {
@@ -91,7 +99,7 @@
                 line-height: 1.2584269663;
                 color: $white;
                 text-transform: capitalize;
-                pointer-events: none;
+        
                 touch-action: none;
 
                 span {
@@ -107,7 +115,7 @@
                 color: $white;
                 text-transform: uppercase;
                 margin-bottom: 20px;
-                pointer-events: none;
+        
                 touch-action: none;
             }
         }
@@ -119,26 +127,26 @@
             flex-direction: column;
             justify-content: flex-end;
             width: 50px;
-            pointer-events: none;
+    
             touch-action: none;
 
             .line-1,
             .line-2,
             .line-3 {
                 width: 50px;
-                height: 1.5px;
+                height: 2px;
                 border-radius: 20px;
                 background-color: $white;
                 margin-bottom: 15px;
                 display: flex;
-                pointer-events: none;
+        
                 touch-action: none;
             }
 
             .line-2 {
                 width: 25px;
                 align-self: flex-end;
-                pointer-events: none;
+        
                 touch-action: none;
             }
         }
@@ -151,7 +159,7 @@
             color: $white;
             text-transform: uppercase;
             margin-bottom: 20px;
-            pointer-events: none;
+    
             touch-action: none;
         }
     }

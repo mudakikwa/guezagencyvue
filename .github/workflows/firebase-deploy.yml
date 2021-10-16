@@ -1,0 +1,52 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Firebase CI
+
+on:
+  push:
+    branches: [ architecture ]
+  pull_request:
+    branches: [ architecture ]
+
+jobs:
+  build:
+    name: build run
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install dependencies
+        run: npm install --no-progress
+
+      - name: build
+        run: npm run build
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: '1 day'
+      - name: Archive Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+        
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Build
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+      - name: Depoy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+          # retrying firebase
+        env:
+          FIREBASE_TOKEN: 1//03sqUvqI32PUDCgYIARAAGAMSNwF-L9IrBFSG4VzFlzs2H1ig3RLpwArKkHIbyNISegiafhx1A9O-endppqWD7GOzYHDRhffvojc

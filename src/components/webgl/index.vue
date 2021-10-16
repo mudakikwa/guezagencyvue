@@ -8,7 +8,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { RoughnessMipmapper } from "three/examples/jsm/utils/RoughnessMipmapper.js";
-import Stats from "three/examples/jsm/libs/stats.module.js";
+// import { GUI } from "three/examples/jsm/libs/dat.gui.module";
+// import Stats from "three/examples/jsm/libs/stats.module.js";
 export default {
   name: "ThreeTest",
   data() {
@@ -20,10 +21,11 @@ export default {
     };
   },
   mounted() {
-    var camera, scene, renderer, mixer, controls, clock, stats;
+    var camera, scene, renderer, mixer, controls, clock, url;
+    url = window.location.origin;
     function init() {
       const container = document.getElementById("webgl");
-      document.body.appendChild(container);
+      // container.appendChild(container);
 
       camera = new THREE.PerspectiveCamera(
         45,
@@ -31,12 +33,12 @@ export default {
         0.25,
         20
       );
-      camera.position.set(-1.8, 0.6, 2.7);
+      camera.position.set(5.9, 0, 6);
       scene = new THREE.Scene();
       clock = new THREE.Clock();
 
       new RGBELoader()
-        .setPath("http://localhost:8080/hdr/")
+        .setPath(`${url}/hdr/`)
         .load("oberer_kuhberg_1k.hdr", function (texture) {
           texture.mapping = THREE.EquirectangularReflectionMapping;
           scene.environment = texture;
@@ -48,7 +50,7 @@ export default {
           // use of RoughnessMipmapper is optional
           const roughnessMipmapper = new RoughnessMipmapper(renderer);
 
-          const loader = new GLTFLoader().setPath("http://localhost:8080/glb/");
+          const loader = new GLTFLoader().setPath(`${url}/glb/`);
           loader.load("scene.gltf", function (gltf) {
             gltf.scene.traverse(function (child) {
               if (child.isMesh) {
@@ -75,16 +77,24 @@ export default {
       renderer.outputEncoding = THREE.sRGBEncoding;
       renderer.setClearColor(0x000000, 0); // the default
       container.appendChild(renderer.domElement);
-      stats = new Stats();
-      container.appendChild(stats.dom);
+      // stats = new Stats();
+      // container.appendChild(stats.dom);
+      // const gui = new GUI();
+      // const cameraFolder = gui.addFolder("camera");
+      // cameraFolder.add(camera.position, "x", 0);
+      // cameraFolder.add(camera.position, "y", 0);
+      // cameraFolder.add(camera.position, "z", 0);
+      // cameraFolder.open();
 
       controls = new OrbitControls(camera, renderer.domElement);
       controls.addEventListener("change", render); // use if there is no animation loop
-      controls.minDistance = 2;
-      controls.maxDistance = 10;
       controls.enablePan = false;
       controls.enableDamping = true;
       controls.target.set(0, 0, -0.2);
+      controls.maxZoom = 0.5;
+      controls.minZoom = 0;
+      controls.minDistance = 2;
+      controls.maxDistance = 6;
       controls.update();
 
       window.addEventListener("resize", onWindowResize);
@@ -108,7 +118,7 @@ export default {
 
       controls.update();
 
-      stats.update();
+      // stats.update();
 
       renderer.render(scene, camera);
     }
@@ -121,6 +131,10 @@ export default {
     }
     init();
     render();
+  },
+  unmount() {
+    var el = document.querySelector("canvas");
+    el.remove();
   },
 };
 </script>

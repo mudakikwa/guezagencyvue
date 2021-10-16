@@ -1,8 +1,7 @@
 <template>
-  <WebGl />
   <div id="home">
     <div class="row">
-      <div class="d-flex">
+      <div class="d-flex justify-content-md-between">
         <div class="icons">
           <Logo />
           <div class="media-icons">
@@ -61,9 +60,6 @@ import Facebook from "./src/Facebook.vue";
 import LeftArrow from "./src/LeftArrow.vue";
 import DownArrow from "./src/ArrowDown.vue";
 
-//webgl
-import WebGl from "../webgl/index.vue";
-
 export default {
   components: {
     Logo: Logo,
@@ -72,7 +68,6 @@ export default {
     Facebook: Facebook,
     LeftArrow,
     DownArrow,
-    WebGl,
   },
   name: "Home",
   props: {
