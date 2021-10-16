@@ -5,9 +5,9 @@ name: Firebase CI
 
 on:
   push:
-    branches: [ architecture ]
+    branches: [ master ]
   pull_request:
-    branches: [ architecture ]
+    branches: [ master ]
 
 jobs:
   build:
