@@ -1,0 +1,158 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+#home {
+    min-width: 100vw;
+    min-height: 100vh;
+    padding: 3.125em;
+    user-select: none;
+    pointer-events: none;
+    touch-action: none;
+    display: inline-block;
+
+    // background-color: $black;
+    .icons {
+        min-height: calc(100vh - 6.250em);
+        min-width: 60px;
+        max-width: 60px;
+        display: grid;
+        place-items: center;
+        align-content: space-between;
+        pointer-events: none;
+        touch-action: none;
+
+        svg {
+            display: block;
+            align-self: center;
+
+            path,
+            circle {
+                @include transition;
+            }
+
+            pointer-events: none;
+            touch-action: none;
+
+            &:hover {
+
+                path,
+                circle {
+                    stroke: $green;
+                }
+            }
+        }
+
+        .media-icons {
+            min-height: 50vh;
+            display: grid;
+            pointer-events: none;
+            touch-action: none;
+        }
+    }
+
+    .body {
+        max-width: calc(100vw - 115px);
+        pointer-events: none;
+        touch-action: none;
+
+        .demo-reel {
+            width: 100%;
+            display: grid;
+            place-items: center;
+            pointer-events: none;
+            touch-action: none;
+
+            .demo-reel-text {
+                font-family: $gilroy-medium;
+                font-weight: 600;
+                font-size: 1.125em;
+                text-align: left;
+                color: #fff;
+                line-height: 1;
+                margin-left: 20px;
+                align-self: center;
+                pointer-events: none;
+                touch-action: none;
+            }
+        }
+
+        .home-text {
+            min-height: calc(100vh - 7.500em);
+            display: grid;
+            align-content: space-between;
+            pointer-events: none;
+            touch-action: none;
+
+            .welcom-text {
+                font-family: $GTSectraDisplay_Bold;
+                font-weight: bold;
+                font-size: 5.563em;
+                text-align: left;
+                line-height: 1.2584269663;
+                color: $white;
+                text-transform: capitalize;
+                pointer-events: none;
+                touch-action: none;
+
+                span {
+                    color: $green;
+                }
+            }
+
+            .text {
+                font-family: $Heebo_Light;
+                font-weight: 300;
+                font-size: 1.063em;
+                text-align: left;
+                color: $white;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                pointer-events: none;
+                touch-action: none;
+            }
+        }
+    }
+
+    .menu {
+        .menu-des {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            width: 50px;
+            pointer-events: none;
+            touch-action: none;
+
+            .line-1,
+            .line-2,
+            .line-3 {
+                width: 50px;
+                height: 1.5px;
+                border-radius: 20px;
+                background-color: $white;
+                margin-bottom: 15px;
+                display: flex;
+                pointer-events: none;
+                touch-action: none;
+            }
+
+            .line-2 {
+                width: 25px;
+                align-self: flex-end;
+                pointer-events: none;
+                touch-action: none;
+            }
+        }
+
+        .text {
+            font-family: $Heebo_Light;
+            font-weight: 300;
+            font-size: 1.063em;
+            text-align: left;
+            color: $white;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            pointer-events: none;
+            touch-action: none;
+        }
+    }
+}

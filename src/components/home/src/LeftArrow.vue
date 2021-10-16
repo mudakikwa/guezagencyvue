@@ -1,0 +1,27 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="9.621"
+    height="16.243"
+    viewBox="0 0 9.621 16.243"
+  >
+    <g id="nav-arrow-right" transform="translate(-6.879 -3.879)">
+      <g id="Group_1" data-name="Group 1">
+        <path
+          id="Path_1"
+          data-name="Path 1"
+          d="M9,6l6,6L9,18"
+          fill="none"
+          stroke="#099"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="3"
+        />
+      </g>
+    </g>
+  </svg>
+</template>
+
+<script>
+export default {};
+</script>
