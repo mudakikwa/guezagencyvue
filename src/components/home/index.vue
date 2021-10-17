@@ -3,7 +3,7 @@
     <div class="row">
       <div class="d-flex justify-content-md-between">
         <div class="icons">
-          <Logo />
+          <div class="logo"><Logo /></div>
           <div class="media-icons">
             <div class="social-icons"><Twitter /></div>
             <div class="social-icons"><Instagram /></div>
@@ -18,11 +18,12 @@
               <div class="demo-reel-text">Our Show Reel</div>
             </div>
           </div>
+          <div></div>
           <div class="home-text">
             <div></div>
             <div class="row mx-0">
               <div class="col-md-1"></div>
-              <div class="col-md-6">
+              <div class="col-md-7 col-lg-6 col-xl-6">
                 <div class="welcom-text">
                   We are guez agency and we are great <span>strategists</span>
                 </div>
@@ -31,7 +32,7 @@
             <div class="scroll-info">
               <div class="row mx-0">
                 <div class="col-md-1"></div>
-                <div class="col-md-1">
+                <div class="col-md-6">
                   <div class="text">Scroll Down</div>
                   <DownArrow />
                 </div>
@@ -45,7 +46,9 @@
             <div class="line-2"></div>
             <div class="line-3"></div>
           </div>
-          <div class="text">Menu</div>
+          <div class="menu-text-container">
+            <div class="text">Menu</div>
+          </div>
         </div>
       </div>
     </div>

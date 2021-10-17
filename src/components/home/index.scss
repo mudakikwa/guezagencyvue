@@ -7,15 +7,25 @@
     padding: 3.125em;
     padding-left: 10vw;
     padding-right: 10vw;
-    touch-action: none;
+
     display: inline-block;
     position: fixed;
-    z-index:1;
-    top:0;
-    left:0;
-    pointer-events: none;
-    .row{
-        pointer-events: none;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    pointer-events: none;   
+    @include mq($xlg){
+        padding: 30px;
+        padding-left: 30px  ;
+        padding-right: 30px;
+        padding-bottom: 0px;
+    }
+    @include mq($lg) {
+        padding: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 0px;
     }
 
     // background-color: $black;
@@ -26,8 +36,11 @@
         display: grid;
         place-items: center;
         align-content: space-between;
+        @include mq( $xlg){
+            min-height: calc(100vh - 6.250em);
+            max-height: calc(100vh - 2em);
+        }
 
-        touch-action: none;
 
         svg {
             display: block;
@@ -38,8 +51,6 @@
                 @include transition;
             }
 
-    
-            touch-action: none;
 
             &:hover {
 
@@ -50,25 +61,42 @@
             }
         }
 
+        .logo {
+            @include mq( $lg) {
+                svg {
+                    width: 45px;
+                }
+            }
+        }
+
         .media-icons {
             min-height: 50vh;
             display: grid;
-    
-            touch-action: none;
+
+            .social-icons {
+                @include mq( $xlg) {
+                    svg {
+                        width: 30px;
+                    }
+                }
+            }
+
         }
     }
 
     .body {
         max-width: calc(100vw - 115px);
 
-        touch-action: none;
+
 
         .demo-reel {
+            position: absolute;
+            left:0;
             width: 100%;
             display: grid;
             place-items: center;
-    
-            touch-action: none;
+
+
 
             .demo-reel-text {
                 font-family: $gilroy-medium;
@@ -79,17 +107,20 @@
                 line-height: 1;
                 margin-left: 20px;
                 align-self: center;
-        
-                touch-action: none;
+
+
+                @include mq( $xlg) {
+                    font-size: 0.775em;
+                }
             }
         }
 
         .home-text {
-            min-height: calc(100vh - 7.500em);
+            min-height: calc(100vh - 2em);
             display: grid;
             align-content: space-between;
-    
-            touch-action: none;
+
+
 
             .welcom-text {
                 font-family: $GTSectraDisplay_Bold;
@@ -99,11 +130,26 @@
                 line-height: 1.2584269663;
                 color: $white;
                 text-transform: capitalize;
-        
-                touch-action: none;
+
+                @include mq($xlg) {
+                    font-size: 4.563em;
+                    line-height: 1.2;
+                }
+                @include mq( $lg) {
+                    font-size: 3.563em;
+                    line-height: 1.2;
+                }
 
                 span {
                     color: $green;
+                }
+            }
+
+            .scroll-info {
+                @include mq( $xlg) {
+                    svg {
+                        display: none;
+                    }
                 }
             }
 
@@ -115,8 +161,11 @@
                 color: $white;
                 text-transform: uppercase;
                 margin-bottom: 20px;
-        
-                touch-action: none;
+
+
+                @include mq( $xlg) {
+                    font-size: .763em;
+                }
             }
         }
     }
@@ -127,8 +176,11 @@
             flex-direction: column;
             justify-content: flex-end;
             width: 50px;
-    
-            touch-action: none;
+
+            @include mq( $xlg) {
+                width: 35px;
+            }
+
 
             .line-1,
             .line-2,
@@ -139,16 +191,33 @@
                 background-color: $white;
                 margin-bottom: 15px;
                 display: flex;
-        
-                touch-action: none;
+
+                @include mq( $xlg) {
+                    margin-bottom: 10px;
+                    width: 35px;
+
+                    &:last-child {
+                        margin-bottom: 5px;
+                    }
+                }
+
             }
 
             .line-2 {
                 width: 25px;
                 align-self: flex-end;
-        
-                touch-action: none;
+
+                @include mq( $xlg) {
+                    width: (35px/2);
+                }
+
             }
+        }
+
+        .menu-text-container {
+            width: 100%;
+            display: grid;
+            place-items: center;
         }
 
         .text {
@@ -159,8 +228,12 @@
             color: $white;
             text-transform: uppercase;
             margin-bottom: 20px;
-    
-            touch-action: none;
+
+
+            @include mq( $xlg) {
+                font-size: .563em;
+                align-self: flex-end;
+            }
         }
     }
 }

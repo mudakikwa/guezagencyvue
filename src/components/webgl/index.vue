@@ -8,6 +8,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { RoughnessMipmapper } from "three/examples/jsm/utils/RoughnessMipmapper.js";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { RGBShiftShader } from "three/examples/jsm/shaders/RGBShiftShader.js";
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
 // import { GUI } from "three/examples/jsm/libs/dat.gui.module";
 // import Stats from "three/examples/jsm/libs/stats.module.js";
 export default {
@@ -21,7 +25,17 @@ export default {
     };
   },
   mounted() {
-    var camera, scene, renderer, mixer, controls, clock, url;
+    var camera,
+      scene,
+      renderer,
+      mixer,
+      controls,
+      clock,
+      url,
+      composer,
+      counter,
+      myEffect,
+      customPass;
     url = window.location.origin;
     function init() {
       const container = document.getElementById("webgl");
@@ -36,14 +50,13 @@ export default {
       camera.position.set(5.9, 0, 6);
       scene = new THREE.Scene();
       clock = new THREE.Clock();
-
       new RGBELoader()
         .setPath(`${url}/hdr/`)
         .load("oberer_kuhberg_1k.hdr", function (texture) {
           texture.mapping = THREE.EquirectangularReflectionMapping;
           scene.environment = texture;
 
-          render();
+          // render();
 
           // model
 
@@ -59,13 +72,64 @@ export default {
             });
             gltf.scene.scale.set(1, 1, 1);
             scene.add(gltf.scene);
+            // post processing
+            const vertexShader = `
+            varying vec2 vUv;
+            void main() {
+              vUv = uv;
+              gl_Position = projectionMatrix 
+                * modelViewMatrix 
+                * vec4( position, 1.0 );
+            }
+            `;
+            const fragmentShader = `
+            uniform float amount;
+            uniform sampler2D tDiffuse;
+            varying vec2 vUv;
+
+            float random( vec2 p )
+            {
+              vec2 K1 = vec2(
+                23.14069263277926, // e^pi (Gelfond's constant)
+                2.665144142690225 // 2^sqrt(2) (Gelfondâ€“Schneider constant)
+              );
+              return fract( cos( dot(p,K1) ) * 12345.6789 );
+            }
+
+            void main() {
+
+              vec4 color = texture2D( tDiffuse, vUv );
+              vec2 uvRandom = vUv;
+              uvRandom.y *= random(vec2(uvRandom.y,amount));
+              color.rgb += random(uvRandom)*0.15;
+              gl_FragColor = vec4( color  );
+            }
+            `;
             mixer = new THREE.AnimationMixer(gltf.scene);
             mixer.clipAction(gltf.animations[0]).play();
+            composer = new EffectComposer(renderer);
+            const renderPass = new RenderPass(scene, camera);
+            composer.addPass(renderPass);
+            const effect1 = new ShaderPass(RGBShiftShader);
+            effect1.uniforms["amount"].value = 0.0015;
+            composer.addPass(effect1);
+            counter = 0.0;
+            myEffect = {
+              uniforms: {
+                tDiffuse: { value: null },
+                amount: { value: counter },
+              },
+              vertexShader: vertexShader,
+              fragmentShader: fragmentShader,
+            };
 
-            animate();
+            customPass = new ShaderPass(myEffect);
+            customPass.renderToScreen = true;
+            composer.addPass(customPass);
             roughnessMipmapper.dispose();
+            animate();
 
-            render();
+            // render();
           });
         });
 
@@ -110,27 +174,23 @@ export default {
     }
 
     function animate() {
-      requestAnimationFrame(animate);
-
       const delta = clock.getDelta();
 
       mixer.update(delta);
 
       controls.update();
-
-      // stats.update();
-
-      renderer.render(scene, camera);
+      counter += 0.01;
+      customPass.uniforms["amount"].value = counter;
+      composer.render();
+      requestAnimationFrame(animate);
     }
 
     //
-
     function render() {
       camera.updateProjectionMatrix();
-      renderer.render(scene, camera);
+      composer.render();
     }
     init();
-    render();
   },
   unmount() {
     var el = document.querySelector("canvas");
